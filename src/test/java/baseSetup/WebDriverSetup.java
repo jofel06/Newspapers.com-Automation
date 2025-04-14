@@ -24,7 +24,7 @@ public class WebDriverSetup {
     @BeforeMethod
     @Parameters("browser")
     public void setUp(String browser){
-        String baseURL = configReader.getBaseURL(); //This will read the URL path from the config.properties
+        String baseURL = configReader.getBaseURL();//This will read the URL path from the config.properties
 
         driver = initializeDriver(browser);
         driver.get(baseURL);
