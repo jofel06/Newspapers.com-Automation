@@ -5,9 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class HomePage extends BasePage{
+public class HomePage extends BasePage {
 
-    @FindBy(linkText = "Sign In")
+    @FindBy(css = "a[class='MemberNavigation_HeaderButtonLink__L6X_g']")
     private WebElement signInIcon;
 
     public HomePage(WebDriver driver){

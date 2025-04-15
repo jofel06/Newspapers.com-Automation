@@ -7,13 +7,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+
 public class BasePage {
     protected WebDriver driver;
     private final WebDriverWait wait;
 
     public BasePage(WebDriver driver){
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // this creates a new instance of the WebDriver
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
 
     protected void waitForElement(WebElement element){
@@ -29,13 +30,5 @@ public class BasePage {
         waitForElement(element);
         element.clear();
         element.sendKeys(text);
-
     }
-
-
-
-
-
-
-
 }
