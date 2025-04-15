@@ -1,18 +1,18 @@
 package stepDefinitions;
 
-import baseSetup.WebDriverSetup;
+import base.BaseTest;
 import io.cucumber.java.en.Given;
 import pages.HomePage;
 import pages.SignInPage;
 import utils.ConfigReader;
 
-public class LoginStepDefinitions extends WebDriverSetup {
+public class LoginStep extends BaseTest {
 
     private ConfigReader configReader;
     private SignInPage signInPage;
     private HomePage homePage;
 
-    public LoginStepDefinitions(){
+    public LoginStep(){
         super();
         this.homePage = new HomePage(driver);
         this.signInPage = new SignInPage(driver);

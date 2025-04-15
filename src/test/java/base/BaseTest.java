@@ -1,4 +1,4 @@
-package baseSetup;
+package base;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,11 +13,11 @@ import org.testng.annotations.Parameters;
 
 import java.util.concurrent.TimeUnit;
 
-public class WebDriverSetup {
+public class BaseTest {
     private ConfigReader configReader;
     protected WebDriver driver;
 
-    public WebDriverSetup(){
+    public BaseTest(){
         configReader = new ConfigReader();
     }
 

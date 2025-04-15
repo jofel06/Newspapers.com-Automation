@@ -5,12 +5,12 @@ import java.util.Properties;
 
 
 public class ConfigReader {
-    private static final Properties properties = new Properties();
-    private static final String config_path = "src/test/resources/config.properties";
+    private static Properties properties = new Properties();
+    private static String config_path = "src/test/resources/config.properties";
 
     static {
-        try (FileInputStream inputStream = new FileInputStream(config_path)) {
-            properties.load(inputStream);
+        try (FileInputStream fis = new FileInputStream(config_path)) {
+            properties.load(fis);
         }
         catch (IOException e) {
             throw new RuntimeException("Configuration properties not found at " + config_path, e);
