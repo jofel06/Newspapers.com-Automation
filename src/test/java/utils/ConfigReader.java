@@ -1,28 +1,24 @@
 package utils;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 
 public class ConfigReader {
-    private static Properties properties = new Properties();
-    private static String config_path = "src/test/resources/config.properties";
+    private static Properties properties;
 
     static {
-        try (FileInputStream fis = new FileInputStream(config_path)) {
-            properties.load(fis);
-        }
-        catch (IOException e) {
-            throw new RuntimeException("Configuration properties not found at " + config_path, e);
+        try (InputStream input = new FileInputStream("src/test/resources/config.properties")) {
+            properties = new Properties();
+            properties.load(input);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public static String getBaseURL(){
-        String baseURL = properties.getProperty("baseURL");
-        if (baseURL == null) {
-            throw new RuntimeException("baseURL is missing in the configuration properties.");
-        }
-        return baseURL;
+    public static String getBaseURL(String key){
+        return properties.getProperty(key);
     }
 
 

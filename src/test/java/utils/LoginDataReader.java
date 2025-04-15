@@ -2,7 +2,6 @@ package utils;
 
 import io.cucumber.core.internal.com.fasterxml.jackson.databind.ObjectMapper;
 import models.LoginData;
-
 import java.io.IOException;
 import java.io.File;
 
