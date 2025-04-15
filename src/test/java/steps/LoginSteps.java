@@ -1,29 +1,28 @@
-package stepDefinitions;
+package steps;
 
 import base.BaseTest;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import models.LoginData;
+import models.LoginDataModel;
 import org.testng.Assert;
 import pages.HomePage;
-import pages.SignInPage;
+import pages.LoginPage;
 import utils.ConfigReader;
 import utils.LoginDataReader;
 
-public class LoginStep extends BaseTest {
+public class LoginSteps extends BaseTest {
 
-    private SignInPage signInPage;
+    private LoginPage loginPage;
     private HomePage homePage;
-    private LoginData loginData;
+    private LoginDataModel loginDataModel;
     private String baseURL;
 
-    public LoginStep(){
-        super();
+    public LoginSteps(){
         this.homePage = new HomePage(driver);
-        this.signInPage = new SignInPage(driver);
-        this.loginData = LoginDataReader.getLoginData();
+        this.loginPage = new LoginPage(driver);
+        this.loginDataModel = LoginDataReader.getLoginData();
         this.baseURL = ConfigReader.getBaseURL("baseURL");
     }
 
@@ -39,8 +38,8 @@ public class LoginStep extends BaseTest {
 
     @And("the user logs in with valid data")
     public void userEnterValidData(){
-        signInPage.enterEmail(loginData.getEmail());
-        signInPage.enterPassword(loginData.getPassword());
+        loginPage.enterEmail(loginDataModel.getEmail());
+        loginPage.enterPassword(loginDataModel.getPassword());
     }
 
     @Then("the user should be redirected to the homepage")

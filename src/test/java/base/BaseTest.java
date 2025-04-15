@@ -12,6 +12,12 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
     protected WebDriver driver;
+    protected String baseURL;
+
+    //This initializes baseURL in the constructor to make it readily available
+    public BaseTest() {
+        this.baseURL = ConfigReader.getBaseURL("baseUrl");
+    }
 
     @BeforeMethod
     @Parameters("browser")
@@ -19,12 +25,11 @@ public class BaseTest {
         driver = initializeDriver(browser);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-
-        driver.get(ConfigReader.getBaseURL("baseUrl"));
+        driver.get(baseURL);
     }
 
     private WebDriver initializeDriver(String browser){
-        WebDriver driver;
+        WebDriver driver = null;
 
         if (browser.equalsIgnoreCase("chrome")){
             WebDriverManager.chromedriver().setup();

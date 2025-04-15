@@ -1,6 +1,6 @@
 package models;
 
-public class LoginData {
+public class LoginDataModel {
     private String email;
     private String password;
 
