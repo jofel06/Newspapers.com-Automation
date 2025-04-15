@@ -5,14 +5,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage extends HomePage{
+public class LoginPage extends BasePage{
 
     @FindBy(id = "email")
     private WebElement emailField;
     @FindBy(id = "password")
     private WebElement passwordField;
-    @FindBy(css = "button[title='Sign in with Newspapers.com']")
-    private WebElement NewsPapersButton;
 
     public LoginPage(WebDriver driver){
         super(driver);
@@ -27,7 +25,4 @@ public class LoginPage extends HomePage{
         type(passwordField, password);
     }
 
-    public void signInWithNewspapersButton(){
-        click(NewsPapersButton);
-    }
 }
