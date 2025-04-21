@@ -2,53 +2,55 @@ package base;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import utils.ConfigReader;
+
 import java.util.concurrent.TimeUnit;
 
 public class Hooks {
 
-    private final ScenarioContext scenarioContext;
+    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    private static String browserName;
 
-    public Hooks(ScenarioContext scenarioContext) {
-        System.out.println("Hooks constructor called with ScenarioContext: " + scenarioContext); // Add this
-        this.scenarioContext = scenarioContext;
-    }
+    public static void setBrowser(String browser) {
+        browserName = browser; }
 
     @Before
-    public void setUpDriver() {
-        String browser = System.getProperty("browser", "chrome");
-        WebDriver driver = null; // Initialize driver here
-
-        switch (browser.toLowerCase()) {
+    public void setUpDriver(Scenario scenario) {
+        if (browserName == null || browserName.isEmpty()) {
+            browserName = ConfigReader.getBrowser(); // Default to Chrome if not specified
+        }
+        switch (browserName.toLowerCase()) {
             case "chrome":
                 WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
+                driver.set(new ChromeDriver());
                 break;
-
             case "edge":
                 WebDriverManager.edgedriver().setup();
-                driver = new EdgeDriver();
+                driver.set(new EdgeDriver());
                 break;
-
             default:
-                throw new IllegalArgumentException("Error! Unsupported Browser: " + browser);
+                throw new IllegalArgumentException("Unsupported browser: " + browserName);
         }
-
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-        scenarioContext.setDriver(driver);
-        System.out.println("@Before setUpDriver() - Driver set in ScenarioContext: " + scenarioContext.getDriver()); // Add this
+        getDriver().get(ConfigReader.getUrl());
+        getDriver().manage().window().maximize();
+        System.out.println("Starting scenario: " + scenario.getName() + "on browser: " + browserName);
     }
 
     @After
-    public void tearDownDriver() {
-        WebDriver driver = scenarioContext.getDriver();
-        System.out.println("@After tearDownDriver() - Getting Driver from ScenarioContext: " + driver); // Add this
-        if (driver != null) {
-            driver.quit();
+    public void quitWebDriver(Scenario scenario) {
+        if (getDriver() != null) {
+            getDriver().quit();
+            driver.remove();
         }
+        System.out.println("Ending scenario: " + scenario.getName());
+    }
+
+    public static WebDriver getDriver() {
+        return driver.get();
     }
 }
