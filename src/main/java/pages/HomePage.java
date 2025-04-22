@@ -9,6 +9,8 @@ public class HomePage extends BasePage {
 
     @FindBy(css = "a[class='MemberNavigation_HeaderButtonLink__L6X_g']")
     private WebElement signInIcon;
+    @FindBy(linkText = "Topics")
+    private WebElement topicsHeaderLink;
 
     public HomePage(WebDriver driver){
         super(driver);
@@ -17,5 +19,9 @@ public class HomePage extends BasePage {
 
     public void clickSignInIcon(){
         click(signInIcon);
+    }
+
+    public void clickTopicsHeaderLink(){
+        click(topicsHeaderLink);
     }
 }

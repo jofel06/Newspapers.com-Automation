@@ -1,0 +1,15 @@
+<suite name="Full Suite Test" parallel="tests" thread-count="2">
+    <test name="Search Topic Test - Chrome">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="runners.SearchByTopicRunner"/>
+        </classes>
+    </test>
+
+    <test name="Search Topic Test - Edge">
+        <parameter name="browser" value="edge"/>
+        <classes>
+            <class name="runners.SearchByTopicRunner"/>
+        </classes>
+    </test>
+</suite>
