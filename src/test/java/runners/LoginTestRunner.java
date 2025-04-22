@@ -9,13 +9,13 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 @CucumberOptions(
-        features = "src/test/resources/gherkin_features", //this is the path to the Gherkin features directory
+        features = "src/test/resources/gherkin_features/login.feature", //this is the path to the Gherkin features directory
         glue = {"steps", "base"}, // Path to the step definitions
         plugin = {"pretty", "html:target/cucumber-report.html"},
         monochrome = true) // Clean console output (no weird symbols or colors).
 
 @Test
-public class TestNGCucumberRunner extends AbstractTestNGCucumberTests {
+public class LoginTestRunner extends AbstractTestNGCucumberTests {
     @BeforeTest
     @Parameters("browser")
     public void setupBrowser(String browser) {

@@ -35,7 +35,7 @@ public class SearchArticleByTopicSteps {
     }
 
     @And("the user clicks the Search button")
-    public void userClickTopicsSearchBar(){
+    public void clickTopicsSearchBar(){
         topicsPage.clickTopicSearchButton();
     }
 
@@ -46,4 +46,13 @@ public class SearchArticleByTopicSteps {
                 "Expected search result to contain '" + expectedResult + "' but got: '" + actualResult + "'");
     }
 
+    @When("the user clicks on {string} from the results")
+    public void clickSearchResult(){
+        topicsPage.clickRMSTitanicLinkPage();
+    }
+
+    @Then("the article details page should be displayed")
+    public void verifyArticleDetailsPageIsDisplayed(){
+
+    }
 }
