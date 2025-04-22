@@ -31,4 +31,9 @@ public class BasePage {
         element.clear();
         element.sendKeys(text);
     }
+
+    protected String isDisplayed(WebElement element){
+        waitForElement(element);
+        return element.getText();
+    }
 }
