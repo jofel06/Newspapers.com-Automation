@@ -7,6 +7,6 @@ Scenario: User searches for a newspaper article and views the full article
   And the user clicks the Search button
   Then the search results should contain "RMS Titanic"
 
-#  When the user clicks on "RMS Titanic" from the results
-#  Then the article details page should be displayed
-#  And the page title should contain "Titanic"
+  When the user clicks on "RMS Titanic" from the results
+  Then the article details page should be displayed
+  And the page title should contain "Titanic"
