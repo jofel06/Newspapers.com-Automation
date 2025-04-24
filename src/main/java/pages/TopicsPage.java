@@ -14,10 +14,10 @@ public class TopicsPage extends BasePage{
     private WebElement topicSearchField;
     @FindBy(css = "input[type='submit']")
     private WebElement topicSearchButton;
-    @FindBy(linkText = "RMS Titanic")
-    private WebElement rmsTitanicLink;
     @FindBy(css = "h2.entry-title > a")
     private List<WebElement> topicSearchResult;
+    @FindBy(css = "h1.entry-title > a")
+    private List<WebElement> topicArticlePage;
 
     public TopicsPage(WebDriver driver){
         super(driver);
@@ -32,13 +32,8 @@ public class TopicsPage extends BasePage{
         click(topicSearchButton);
     }
 
-    public void clickRMSTitanicLinkPage(){
-        click(rmsTitanicLink);
-    }
-
     public List<String> getTopicSearchResult(){
-        return topicSearchResult.stream().map(WebElement::getText)
-                .collect(Collectors.toList());
+        return topicSearchResult.stream().map(WebElement::getText).collect(Collectors.toList());
     }
 
     public void clickTopicSearchResult(String substring) {
@@ -48,12 +43,11 @@ public class TopicsPage extends BasePage{
                 return;
             }
             }
-            throw new NoSuchElementException(
-                    "Could not find a search result containing '"
-                            + substring
-                            + "'; available results: "
-                            + topicSearchResult.stream()
-                            .map(WebElement::getText)
-                            .collect(Collectors.toList()));
+            throw new NoSuchElementException("Could not find a search result containing '" + substring + "'; available results: "
+                            + topicSearchResult.stream().map(WebElement::getText).toList());
+        }
+        
+    public List<String> getTopicArticlePage(){
+        return topicArticlePage.stream().map(WebElement::getText).collect(Collectors.toList());
         }
 }

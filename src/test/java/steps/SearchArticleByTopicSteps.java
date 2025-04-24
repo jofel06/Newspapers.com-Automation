@@ -52,8 +52,9 @@ public class SearchArticleByTopicSteps {
         topicsPage.clickTopicSearchResult(result);
     }
 
-    @Then("the article details page should be displayed")
-    public void verifyArticleDetailsPageIsDisplayed(){
-
+    @Then("the article details page for {string} should be displayed")
+    public void verifyArticleDetailsPageIsDisplayed(String expectedResult){
+        List<String> results = topicsPage.getTopicArticlePage();
+        AssertionUtils.assertListContainsSubstring(results, expectedResult);
     }
 }
