@@ -1,19 +1,14 @@
 package steps;
 
 import base.Hooks;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import models.LoginDataModel;
-import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import pages.HomePage;
 import pages.LoginPage;
 import utils.ConfigReader;
 import utils.LoginDataReader;
-
-import java.util.concurrent.ConcurrentHashMap;
 
 public class LoginSteps{
 

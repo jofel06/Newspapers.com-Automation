@@ -1,4 +1,4 @@
-Feature: and View and Newspaper article
+Feature: Search and view articles by topics
 
 Scenario: User searches for a newspaper article and views the full article
   Given the user is on the Newspapers.com homepage
@@ -8,5 +8,4 @@ Scenario: User searches for a newspaper article and views the full article
   Then the search results should contain "RMS Titanic"
 
   When the user clicks on "RMS Titanic" from the results
-  Then the article details page should be displayed
-  And the page title should contain "Titanic"
+  Then the article details page for "RMS Titanic" should be displayed
