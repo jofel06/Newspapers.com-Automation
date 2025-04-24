@@ -4,6 +4,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import java.util.List;
+import java.util.stream.Collectors;
+import org.openqa.selenium.NoSuchElementException;
 
 public class TopicsPage extends BasePage{
 
@@ -13,6 +16,8 @@ public class TopicsPage extends BasePage{
     private WebElement topicSearchButton;
     @FindBy(linkText = "RMS Titanic")
     private WebElement rmsTitanicLink;
+    @FindBy(css = "h2.entry-title > a")
+    private List<WebElement> topicSearchResult;
 
     public TopicsPage(WebDriver driver){
         super(driver);
@@ -31,7 +36,24 @@ public class TopicsPage extends BasePage{
         click(rmsTitanicLink);
     }
 
-    public String verifySearchResult(){
-        return isDisplayed(rmsTitanicLink);
+    public List<String> getTopicSearchResult(){
+        return topicSearchResult.stream().map(WebElement::getText)
+                .collect(Collectors.toList());
     }
+
+    public void clickTopicSearchResult(String substring) {
+        for (WebElement link : topicSearchResult) {
+            if (link.getText().contains(substring)) {
+                link.click();
+                return;
+            }
+            }
+            throw new NoSuchElementException(
+                    "Could not find a search result containing '"
+                            + substring
+                            + "'; available results: "
+                            + topicSearchResult.stream()
+                            .map(WebElement::getText)
+                            .collect(Collectors.toList()));
+        }
 }

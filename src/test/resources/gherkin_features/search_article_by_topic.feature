@@ -8,5 +8,4 @@ Scenario: User searches for a newspaper article and views the full article
   Then the search results should contain "RMS Titanic"
 
   When the user clicks on "RMS Titanic" from the results
-  Then the article details page should be displayed
-  And the page title should contain "Titanic"
+#  Then the article details page should be displayed

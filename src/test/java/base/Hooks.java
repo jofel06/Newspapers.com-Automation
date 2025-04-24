@@ -9,8 +9,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import utils.ConfigReader;
 
-import java.util.concurrent.TimeUnit;
-
 public class Hooks {
 
     private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();

@@ -5,10 +5,12 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.testng.Assert;
 import pages.HomePage;
 import pages.TopicsPage;
+import utils.AssertionUtils;
 import utils.ConfigReader;
+
+import java.util.List;
 
 public class SearchArticleByTopicSteps {
     private HomePage homePage;
@@ -41,14 +43,13 @@ public class SearchArticleByTopicSteps {
 
     @Then("the search results should contain {string}")
     public void searchResultIsDisplayed(String expectedResult){
-        String actualResult = topicsPage.verifySearchResult();
-        Assert.assertTrue(actualResult.contains(expectedResult),
-                "Expected search result to contain '" + expectedResult + "' but got: '" + actualResult + "'");
+        List<String> results = topicsPage.getTopicSearchResult();
+        AssertionUtils.assertListContainsSubstring(results, expectedResult);
     }
 
     @When("the user clicks on {string} from the results")
-    public void clickSearchResult(){
-        topicsPage.clickRMSTitanicLinkPage();
+    public void clickSearchResult(String result){
+        topicsPage.clickTopicSearchResult(result);
     }
 
     @Then("the article details page should be displayed")
