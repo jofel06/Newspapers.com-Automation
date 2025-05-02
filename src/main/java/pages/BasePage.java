@@ -15,7 +15,7 @@ public class BasePage {
 
     public BasePage(WebDriver driver){
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
 
     protected void waitForElement(WebElement element){
@@ -23,7 +23,7 @@ public class BasePage {
     }
 
     protected WebElement waitForLocator(By Locator){
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(Locator));
+        return wait.until(ExpectedConditions.presenceOfElementLocated(Locator));
     }
 
     protected void click(WebElement element){

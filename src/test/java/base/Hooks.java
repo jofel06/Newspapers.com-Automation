@@ -26,22 +26,22 @@ public class Hooks {
         }
         switch (browserName.toLowerCase()) {
             case "chrome":
-                /*ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.addArguments("--headless=new");
-                chromeOptions.addArguments("--disable-gpu");
-                chromeOptions.addArguments("--window-size=1920,1080");
-                chromeOptions.addArguments("--disable-dev-shm-usage");
-                chromeOptions.addArguments("--no-sandbox");*/
+                /*ChromeOptions chrome_options = new ChromeOptions();
+                chrome_options.addArguments("--headless=new");
+                chrome_options.addArguments("--disable-gpu");
+                chrome_options.addArguments("--window-size=1920,1080");
+                chrome_options.addArguments("--disable-dev-shm-usage");
+                chrome_options.addArguments("--no-sandbox");*/
                 WebDriverManager.chromedriver().setup();
                 driver.set(new ChromeDriver());
                 break;
             case "edge":
-                /*EdgeOptions edgeOptions = new EdgeOptions();
-                edgeOptions.addArguments("--headless=new");
-                edgeOptions.addArguments("--disable-gpu");
-                edgeOptions.addArguments("--window-size=1920,1080");
-                edgeOptions.addArguments("--disable-dev-shm-usage");
-                edgeOptions.addArguments("--no-sandbox");*/
+                /*EdgeOptions edge_options = new EdgeOptions();
+                edge_options.addArguments("--headless=new");
+                edge_options.addArguments("--disable-gpu");
+                edge_options.addArguments("--window-size=1920,1080");
+                edge_options.addArguments("--disable-dev-shm-usage");
+                edge_options.addArguments("--no-sandbox");*/
                 WebDriverManager.edgedriver().setup();
                 driver.set(new EdgeDriver());
                 break;

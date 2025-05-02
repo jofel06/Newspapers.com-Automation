@@ -9,6 +9,7 @@ import pages.HomePage;
 import pages.TopicsPage;
 import utils.AssertionUtils;
 import utils.ConfigReader;
+import utils.ScreenshotUtils;
 
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class SearchArticleByTopicSteps {
 
     @And("the user clicks the \"Topics\" header link")
     public void clickTopicsHeaderLink(){
+        ScreenshotUtils.takeScreenshot(Hooks.getDriver(), "before_click_search_button");
         homePage.clickTopicsHeaderLink();
     }
 
