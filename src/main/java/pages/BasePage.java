@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,11 +15,15 @@ public class BasePage {
 
     public BasePage(WebDriver driver){
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     protected void waitForElement(WebElement element){
         wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    protected WebElement waitForLocator(By Locator){
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(Locator));
     }
 
     protected void click(WebElement element){

@@ -6,7 +6,9 @@ import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import utils.ConfigReader;
 
 public class Hooks {
@@ -24,18 +26,30 @@ public class Hooks {
         }
         switch (browserName.toLowerCase()) {
             case "chrome":
+                /*ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--headless=new");
+                chromeOptions.addArguments("--disable-gpu");
+                chromeOptions.addArguments("--window-size=1920,1080");
+                chromeOptions.addArguments("--disable-dev-shm-usage");
+                chromeOptions.addArguments("--no-sandbox");*/
                 WebDriverManager.chromedriver().setup();
                 driver.set(new ChromeDriver());
                 break;
             case "edge":
+                /*EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.addArguments("--headless=new");
+                edgeOptions.addArguments("--disable-gpu");
+                edgeOptions.addArguments("--window-size=1920,1080");
+                edgeOptions.addArguments("--disable-dev-shm-usage");
+                edgeOptions.addArguments("--no-sandbox");*/
                 WebDriverManager.edgedriver().setup();
                 driver.set(new EdgeDriver());
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported browser: " + browserName);
         }
-        getDriver().get(ConfigReader.getUrl());
         getDriver().manage().window().maximize();
+        getDriver().get(ConfigReader.getUrl());
         System.out.println("Starting scenario: " + scenario.getName() + "on browser: " + browserName);
     }
 
